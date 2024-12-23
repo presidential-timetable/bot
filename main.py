@@ -43,6 +43,7 @@ def setup_logging() -> logging.Logger:
 
 async def start_dialog(_: Message | None, dialog_manager: DialogManager):
     # TODO: after making user authentication, start menu state instead of onboarding
+    # TODO: add fucking domain provider to start data
     await dialog_manager.start(
         OnboardingState.MAIN,
         mode=StartMode.RESET_STACK,
@@ -92,7 +93,10 @@ async def main():
     )
 
     setup_dialogs(dp)
-    dp.errors.register(on_unknown_intent, ExceptionTypeFilter(UnknownIntent))
+    dp.errors.register(
+        on_unknown_intent,
+        ExceptionTypeFilter(UnknownIntent)
+    )
 
     @dp.message(Command("start"))
     async def start(_: Message, dialog_manager: DialogManager):

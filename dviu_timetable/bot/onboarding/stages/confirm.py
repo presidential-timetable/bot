@@ -4,6 +4,7 @@ from aiogram_dialog.widgets.kbd import Button, Back
 from aiogram_dialog.widgets.text import Format, Const
 
 from dviu_timetable.bot.onboarding.states import OnboardingState
+from dviu_timetable.core.database.user import User
 
 
 async def _confirm_getter(dialog_manager: DialogManager, **kwargs):
@@ -23,9 +24,19 @@ async def _custom_back_callback(_: CallbackQuery, __: Button, dialog_manager: Di
     await dialog_manager.switch_to(OnboardingState.STUDENT_ENTER_NAME)
 
 
-async def _confirm_callback(_: CallbackQuery, __: Button, dialog_manager: DialogManager):
-    # write to database...
-    await dialog_manager.done()
+async def _confirm_callback(callback_query: CallbackQuery, __: Button, dialog_manager: DialogManager):
+    new_user = User.create(
+        user_id=callback_query.from_user.id,
+        telegram_name=callback_query.from_user.full_name,
+        name=dialog_manager.dialog_data['name'],
+        role=dialog_manager.dialog_data['selected_role'],
+        domain=dialog_manager.dialog_data['selected_domain'],
+        faculty=dialog_manager.dialog_data['selected_faculty'],
+        course=dialog_manager.dialog_data['selected_course'],
+        group=dialog_manager.dialog_data['selected_group'],
+        telegram_username=callback_query.from_user.username
+    )
+    await dialog_manager.done(result={'user': new_user})
     # await dialog_manager.start()  # start menu main state
 
 
