@@ -1,0 +1,30 @@
+[
+    {"domain_id": 1, "faculty_id": 1, "course_id": 1, "group": "Ю-41/9", "group_id": 1111},
+    {"domain_id": 1, "faculty_id": 1, "course_id": 1, "group": "Ю-42/9", "group_id": 1112},
+    {"domain_id": 1, "faculty_id": 1, "course_id": 1, "group": "Ю-43/9", "group_id": 1113},
+
+    {"domain_id": 1, "faculty_id": 2, "course_id": 1, "group": "БД-41/9", "group_id": 1211},
+    {"domain_id": 1, "faculty_id": 2, "course_id": 1, "group": "БД-41/11", "group_id": 1212},
+    {"domain_id": 1, "faculty_id": 2, "course_id": 1, "group": "БД-42/9", "group_id": 1213},
+
+    {"domain_id": 1, "faculty_id": 2, "course_id": 2, "group": "БД-31/9", "group_id": 1221},
+    {"domain_id": 1, "faculty_id": 2, "course_id": 2, "group": "БД-32/9", "group_id": 1222},
+    {"domain_id": 1, "faculty_id": 2, "course_id": 2, "group": "БД-33/9", "group_id": 1223},
+
+    {"domain_id": 1, "faculty_id": 2, "course_id": 3, "group": "БД-21/9", "group_id": 1231},
+    {"domain_id": 1, "faculty_id": 2, "course_id": 3, "group": "БД-22/9", "group_id": 1232},
+    {"domain_id": 1, "faculty_id": 2, "course_id": 3, "group": "БД-23/9", "group_id": 1233},
+
+    {"domain_id": 1, "faculty_id": 3, "course_id": 1, "group": "ЭБУ-41/9", "group_id": 1311},
+    {"domain_id": 1, "faculty_id": 3, "course_id": 1, "group": "ЭБУ-41/11", "group_id": 1312},
+    {"domain_id": 1, "faculty_id": 3, "course_id": 1, "group": "ЭБУ-42/9", "group_id": 1313},
+
+    {"domain_id": 1, "faculty_id": 3, "course_id": 2, "group": "ЭБУ-31/9", "group_id": 1321},
+    {"domain_id": 1, "faculty_id": 3, "course_id": 2, "group": "ЭБУ-32/9", "group_id": 1322},
+    {"domain_id": 1, "faculty_id": 3, "course_id": 2, "group": "ЭБУ-33/9", "group_id": 1323},
+
+    {"domain_id": 1, "faculty_id": 4, "course_id": 1, "group": "ИТ-41/9", "group_id": 1411},
+
+    {"domain_id": 1, "faculty_id": 4, "course_id": 2, "group": "ИТ-31/9", "group_id": 1421},
+    {"domain_id": 1, "faculty_id": 4, "course_id": 2, "group": "ИТ-32/9", "group_id": 1422}
+]

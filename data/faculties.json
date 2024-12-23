@@ -1,0 +1,6 @@
+[
+    {"domain_id": 1, "faculty_id": 1, "faculty_name": "Юриспруденция"},
+    {"domain_id": 1, "faculty_id": 2, "faculty_name": "Банковское дело"},
+    {"domain_id": 1, "faculty_id": 3, "faculty_name": "Экономика и бух. учёт"},
+    {"domain_id": 1, "faculty_id": 4, "faculty_name": "Информационные системы и программирование"}
+]

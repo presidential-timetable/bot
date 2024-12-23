@@ -1,0 +1,5 @@
+[
+    {"domain_id": 1, "course_id": 1, "course_name": "1 курс"},
+    {"domain_id": 1, "course_id": 2, "course_name": "2 курс"},
+    {"domain_id": 1, "course_id": 3, "course_name": "3 курс"}
+]
