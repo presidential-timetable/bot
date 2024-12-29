@@ -10,6 +10,9 @@ from dviu_timetable.core.models.faculty import Faculty
 from dviu_timetable.core.models.group import Group
 
 from dviu_timetable.core.database.connector import connection
+from dviu_timetable.core.providers.abstract_domain_provider import AbstractDomainProvider
+from dviu_timetable.core.providers.abstract_group_provider import AbstractGroupProvider
+from dviu_timetable.core.providers.abstract_meta_provider import AbstractMetaProvider
 
 
 @dataclass
@@ -26,8 +29,25 @@ class User:
     group: Group
 
     @classmethod
-    def _build_from_tuple(cls, data: tuple) -> User:
-        ...  # TODO
+    def _build_from_tuple(
+            cls,
+            data: tuple,
+            domain_provider: AbstractDomainProvider,
+            meta_provider: AbstractMetaProvider,
+            group_provider: AbstractGroupProvider
+    ) -> User:
+        return User(
+            user_id=data[0],
+            telegram_name=data[1],
+            telegram_username=data[2],
+            name=data[3],
+            activated_on=datetime.fromisoformat(data[4]),
+            role=data[5],
+            domain=domain_provider.get_domain_by_id(data[6]),
+            faculty=meta_provider.get_faculty_by_id(data[7]),
+            course=meta_provider.get_course_by_id(data[8]),
+            group=group_provider.get_group_by_id(data[9])
+        )
 
     @classmethod
     def create(
@@ -64,11 +84,17 @@ class User:
         )
 
     @classmethod
-    def get_by_id(cls, user_id: int) -> User:
+    def get_by_id(
+            cls,
+            user_id: int,
+            domain_provider: AbstractDomainProvider,
+            meta_provider: AbstractMetaProvider,
+            group_provider: AbstractGroupProvider
+    ) -> User:
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM users WHERE user_id = ?', user_id)
+        cursor.execute('SELECT * FROM users WHERE user_id = ?;', (user_id,))
         data = cursor.fetchone()
         if not data:
             raise Exception(f'user with id {user_id} not found')
 
-        return data
+        return cls._build_from_tuple(data, domain_provider, meta_provider, group_provider)
