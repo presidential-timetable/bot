@@ -98,3 +98,33 @@ class User:
             raise Exception(f'user with id {user_id} not found')
 
         return cls._build_from_tuple(data, domain_provider, meta_provider, group_provider)
+
+    @classmethod
+    def check_exists(cls, user_id: int) -> bool:
+        """For contexts where all the providers are not initialized yet"""
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM users WHERE user_id = ?;', (user_id,))
+        data = cursor.fetchone()
+        return bool(data)
+
+    @classmethod
+    def get_dict_data_by_id(cls, user_id: int) -> dict[str, str|int]:
+        """For example, to initialize providers by id"""
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM users WHERE user_id = ?;', (user_id,))
+        data = cursor.fetchone()
+        if not data:
+            raise Exception(f'user with id {user_id} not found')
+
+        return {
+            'user_id': data[0],
+            'telegram_name': data[1],
+            'telegram_username': data[2],
+            'name': data[3],
+            'activated_on': datetime.fromisoformat(data[4]),
+            'role': data[5],
+            'domain_id': data[6],
+            'faculty_id': data[7],
+            'course_id': data[8],
+            'group_id': data[9]
+        }

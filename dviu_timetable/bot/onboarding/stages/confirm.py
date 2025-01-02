@@ -1,8 +1,9 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram_dialog import Window, DialogManager
-from aiogram_dialog.widgets.kbd import Button, Back
+from aiogram.types import CallbackQuery
+from aiogram_dialog import Window, DialogManager, StartMode
+from aiogram_dialog.widgets.kbd import Button
 from aiogram_dialog.widgets.text import Format, Const
 
+from dviu_timetable.bot.main_menu.states import MainMenuState
 from dviu_timetable.bot.onboarding.states import OnboardingState
 from dviu_timetable.core.database.user import User
 
@@ -37,7 +38,12 @@ async def _confirm_callback(callback_query: CallbackQuery, __: Button, dialog_ma
         telegram_username=callback_query.from_user.username
     )
     await dialog_manager.done(result={'user': new_user})
-    # await dialog_manager.start()  # start menu main state
+    await dialog_manager.start(
+        MainMenuState.MAIN,
+        data={'user': new_user},
+        mode=StartMode.RESET_STACK
+    )
+    return
 
 
 async def create_confirm_window():

@@ -1,3 +1,2 @@
 aiogram_dialog
 aiogram
-pytz
